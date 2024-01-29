@@ -10,7 +10,7 @@ GO
 -- Create date: 01/24/2024
 -- Description:	Output: Widget elements List 
 -- =============================================
- ALTER PROCEDURE [dbo].[uscRetrieveListIfRowsInWidgetTable]
+ CREATE PROCEDURE [dbo].[uscRetrieveListIfRowsInWidgetTable]
 (
 	@v_WidgetID         INT       OUTPUT,
     @v_InventoryCode    NVARCHAR  OUTPUT,
