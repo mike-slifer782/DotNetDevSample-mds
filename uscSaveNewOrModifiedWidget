@@ -1,0 +1,44 @@
+USE [DotNetDevSample]
+GO
+/****** Object:  StoredProcedure [dbo].[uscSaveNewOrModifiedWidget]    Script Date: 1/28/2024 8:01:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Michael Slifer 
+-- Create date: 01/24/2024
+-- Description:	INSERT or UPDATE Widget elements
+-- =============================================
+CREATE PROCEDURE [dbo].[uscSaveNewOrModifiedWidget]
+	(@v_WidgetID         INT  = 0,                     
+     @v_InventoryCode    VARCHAR(50)  = NULL,
+     @v_Description      VARCHAR(MAX) = NULL,
+     @v_QuantityOnHand   INT          = 0,
+     @v_ReorderQuantity  INT          = 0
+	)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+IF @v_WidgetID = 0 
+   INSERT INTO dbo.Widget			
+              (InventoryCode,
+               Description,
+               QuantityOnHand,
+               ReorderQuantity
+              )
+      VALUES  (@v_InventoryCode,                      
+               @v_Description,
+               @v_QuantityOnHand,
+               @v_ReorderQuantity
+              )			
+ELSE
+   UPDATE     dbo.Widget  				
+      SET     InventoryCode   =  @v_InventoryCode,             
+              Description     =  @v_Description,
+              QuantityOnHand  =  @v_QuantityOnHand,
+              ReorderQuantity =  @v_ReorderQuantity		
+WHERE	dbo.Widget.WidgetID =  @v_WidgetID
+END 
