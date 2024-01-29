@@ -1,0 +1,35 @@
+USE [DotNetDevSample]
+GO
+/****** Object:  StoredProcedure [dbo].[uscRetrieveListIfRowsInWidgetTable]    Script Date: 1/28/2024 7:46:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Michael Slifer 
+-- Create date: 01/24/2024
+-- Description:	Output: Widget elements List 
+-- =============================================
+ ALTER PROCEDURE [dbo].[uscRetrieveListIfRowsInWidgetTable]
+(
+	@v_WidgetID         INT       OUTPUT,
+    @v_InventoryCode    NVARCHAR  OUTPUT,
+    @v_Description      NVARCHAR  OUTPUT,
+    @v_QuantityOnHand   INT       OUTPUT,
+    @v_ReorderQuantity  INT       OUTPUT
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+  SELECT	
+    @v_WidgetID 	     = 	WidgetID,
+	@v_InventoryCode	 = 	InventoryCode,
+	@v_Description	     = 	Description,
+	@v_QuantityOnHand	 = 	QuantityOnHand,
+	@v_ReorderQuantity	 = 	ReorderQuantity		
+  FROM	DotNetDevSample.dbo.Widget;
+
+END;
