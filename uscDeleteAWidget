@@ -1,0 +1,24 @@
+USE [DotNetDevSample]
+GO
+/****** Object:  StoredProcedure [dbo].[uscDeleteAWidget]    Script Date: 1/28/2024 8:06:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Michael Slifer 
+-- Create date: 01/24/2024
+-- Description:	Delete Widget by WidgetID value 
+-- =============================================
+CREATE PROCEDURE [dbo].[uscDeleteAWidget]
+	@v_WidgetID         INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    DELETE FROM	dbo.Widget				
+     WHERE dbo.Widget.WidgetID = @v_WidgetID;
+
+END;
